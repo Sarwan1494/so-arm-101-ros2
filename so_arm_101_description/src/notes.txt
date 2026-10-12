@@ -1,0 +1,28 @@
+
+
+         // pos = servo.ReadPos(1);
+            // RCLCPP_INFO(this->get_logger(), "Received command: '%s'", msg->data.c_str());
+            // RCLCPP_INFO(this->get_logger(), "Received command: '%d'", pos);
+
+                    // servo.writeByte(6, SMS_STS_BAUD_RATE, SMS_STS_1M);
+        //  if ()
+        //   {
+        //       RCLCPP_INFO(this->get_logger(), "Baudrate changed");
+        //   }
+        //   else
+        //   {
+        //       RCLCPP_INFO(this->get_logger(), "setBaudrate failed");
+        //   }
+        //   RCLCPP_INFO(this->get_logger(), "Enabling toruqe back ON");
+        // servo.EnableTorque(6, 1);
+
+        // RCLCPP_INFO(this->get_logger(), "Setting the baudrate of the PC to 115200");
+        // pos = servo.setBaudRate(115200);
+        // if (pos == 1)
+        // {
+        //     RCLCPP_INFO(this->get_logger(), "Successfully changed PC baudrate");
+        // }
+        // else
+        // {
+        //     RCLCPP_INFO(this->get_logger(), "setBaudrate failed");
+        // }

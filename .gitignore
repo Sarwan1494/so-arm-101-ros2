@@ -1,0 +1,15 @@
+# Ignore everything in src except my own packages
+/*
+!/.gitignore
+!/README.md
+!/so_arm_101_description/
+!/so_arm_101_hardware/
+!/so_arm_101_startup/
+!/so_arm_config/
+
+# Build output and caches
+build/
+install/
+log/
+__pycache__/
+*.pyc

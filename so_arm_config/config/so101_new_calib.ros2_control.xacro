@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="so101_new_calib_ros2_control" params="name initial_positions_file">
+        <xacro:property name="initial_positions" value="${xacro.load_yaml(initial_positions_file)['initial_positions']}"/>
+
+        <ros2_control name="${name}" type="system">
+           <hardware>
+        <xacro:if value="${xacro.arg('mode') == 'real'}">
+            <plugin>so_arm_101_hardware/SoArm101HardwareInterface</plugin>
+            <param name="serial_port">/dev/ttyACM0</param>
+        </xacro:if>
+        <xacro:unless value="${xacro.arg('mode') == 'real'}">
+        <!-- By default, set up controllers for simulation. This won't work on real hardware -->
+            <plugin>mock_components/GenericSystem</plugin>
+        </xacro:unless>
+            </hardware>
+            <joint name="shoulder_pan">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['shoulder_pan']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+                    <xacro:if value="${xacro.arg('mode') == 'real'}">
+                        <param name="servo_id">1</param>
+                        <param name="zero_offset_ticks">157</param>
+                        <param name="direction">1</param>
+                    </xacro:if>
+            </joint>
+            <joint name="shoulder_lift">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['shoulder_lift']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+                <xacro:if value="${xacro.arg('mode') == 'real'}">
+                        <param name="servo_id">2</param>
+                        <param name="zero_offset_ticks">1400</param>
+                        <param name="direction">1</param>
+                </xacro:if>
+            </joint>
+            <joint name="elbow_flex">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['elbow_flex']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+                <xacro:if value="${xacro.arg('mode') == 'real'}">
+                        <param name="servo_id">3</param>
+                        <param name="zero_offset_ticks">1094</param>
+                        <param name="direction">1</param>
+                </xacro:if>
+            </joint>
+            <joint name="wrist_flex">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['wrist_flex']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+                 <xacro:if value="${xacro.arg('mode') == 'real'}">
+                        <param name="servo_id">4</param>
+                        <param name="zero_offset_ticks">289</param>
+                        <param name="direction">1</param>
+                </xacro:if>
+            </joint>
+            <joint name="wrist_roll">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['wrist_roll']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+                 <xacro:if value="${xacro.arg('mode') == 'real'}">
+                        <param name="servo_id">5</param>
+                        <param name="zero_offset_ticks">2048</param>
+                        <param name="direction">-1</param>
+                </xacro:if>
+            </joint>
+            <joint name="gripper">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['gripper']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+                 <xacro:if value="${xacro.arg('mode') == 'real'}">
+                        <param name="servo_id">6</param>
+                        <param name="zero_offset_ticks">2612</param>
+                        <param name="direction">1</param>
+                </xacro:if>
+            </joint>
+
+        </ros2_control>
+    </xacro:macro>
+</robot>

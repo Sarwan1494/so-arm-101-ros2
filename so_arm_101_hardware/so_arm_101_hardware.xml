@@ -1,0 +1,9 @@
+<library path="so_arm_101_hardware">
+  <class name="so_arm_101_hardware/SoArm101HardwareInterface"
+         type="so_arm_101_hardware::SoArm101HardwareInterface"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      ros2_control hardware interface for the SO-101 arm, talking directly to the ST3215 servos over serial.
+    </description>
+  </class>
+</library>
